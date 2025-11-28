@@ -5,21 +5,13 @@ RUN apt-get update && \
     apt-get install -y mariadb-server mariadb-client && \
     docker-php-ext-install mysqli pdo pdo_mysql
 
-# Copia tu proyecto al contenedor
+# Copia tu proyecto
 COPY . /var/www/html/
 
-# Copia tu dump SQL para inicializar la base de datos
+# Copia tu SQL de inicialización
 COPY huntechdb.sql /docker-entrypoint-initdb.d/
 
-# Configura la base y el usuario de aplicación
-RUN service mysql start && \
-    mysql -e "CREATE DATABASE IF NOT EXISTS huntechdb;" && \
-    mysql -e "CREATE USER 'huntech'@'localhost' IDENTIFIED BY '1029';" && \
-    mysql -e "GRANT ALL PRIVILEGES ON huntechdb.* TO 'huntech'@'localhost';" && \
-    mysql -e "FLUSH PRIVILEGES;"
-
-# Arranca MariaDB y Apache juntos
-CMD mysqld_safe & apache2-foreground
+# Arranca MariaDB con tu script y Apache
+CMD mysqld_safe --init-file=/docker-entrypoint-initdb.d/huntechdb.sql & apache2-foreground
 
 EXPOSE 80
-

@@ -14,7 +14,7 @@ COPY huntechdb.sql /docker-entrypoint-initdb.d/
 # Configura la base y el usuario de aplicación
 RUN service mysql start && \
     mysql -e "CREATE DATABASE IF NOT EXISTS huntechdb;" && \
-    mysql -e "CREATE USER 'huntech'@'localhost' IDENTIFIED BY 'tu_contraseña';" && \
+    mysql -e "CREATE USER 'huntech'@'localhost' IDENTIFIED BY '1029';" && \
     mysql -e "GRANT ALL PRIVILEGES ON huntechdb.* TO 'huntech'@'localhost';" && \
     mysql -e "FLUSH PRIVILEGES;"
 
@@ -22,3 +22,4 @@ RUN service mysql start && \
 CMD mysqld_safe & apache2-foreground
 
 EXPOSE 80
+

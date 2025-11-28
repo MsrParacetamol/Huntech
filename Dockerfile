@@ -1,17 +1,18 @@
 FROM php:8.2-apache
 
-# Instala MySQL Server y extensiones necesarias
+# Instala MariaDB y extensiones PHP
 RUN apt-get update && \
-    apt-get install -y default-mysql-server && \
+    apt-get install -y mariadb-server mariadb-client && \
     docker-php-ext-install mysqli pdo pdo_mysql
 
-# Copia tu proyecto al contenedor
+# Copia tu proyecto
 COPY . /var/www/html/
 
-# Copia tu dump SQL para inicializar la base
-COPY huntechdb.sql /docker-entrypoint-initdb.d/
+# Inicializa la base de datos
+RUN service mysql start && \
+    mysql -e "CREATE DATABASE IF NOT EXISTS huntechdb;"
 
-# Inicia MySQL y Apache al arrancar el contenedor
-CMD service mysql start && apache2-foreground
+# Arranca Apache (MariaDB se queda corriendo en background)
+CMD mysqld_safe & apache2-foreground
 
 EXPOSE 80

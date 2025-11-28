@@ -1,0 +1,43 @@
+body {
+  font-family: 'Georgia', serif;
+  margin: 0;
+  background: #f4f4f4;
+}
+
+header {
+  background: #222;
+  color: white;
+  padding: 1em;
+  text-align: center;
+}
+
+nav a {
+  margin: 0 1em;
+  color: #ddd;
+  text-decoration: none;
+}
+
+.grid-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 1em;
+  padding: 2em;
+}
+
+.producto {
+  background: white;
+  padding: 1em;
+  border: 1px solid #ccc;
+}
+
+.producto img {
+  width: 100%;
+  height: auto;
+}
+
+footer {
+  background: #222;
+  color: white;
+  text-align: center;
+  padding: 1em;
+}

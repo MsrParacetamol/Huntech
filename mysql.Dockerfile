@@ -1,0 +1,6 @@
+FROM mysql:8.0
+
+ENV MYSQL_ROOT_PASSWORD=tu_contraseña
+ENV MYSQL_DATABASE=huntechdb
+
+EXPOSE 3306

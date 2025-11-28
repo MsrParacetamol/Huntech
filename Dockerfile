@@ -11,6 +11,13 @@ COPY . /var/www/html/
 # Copia tu dump SQL para inicializar la base de datos
 COPY huntechdb.sql /docker-entrypoint-initdb.d/
 
+# Configura la base y el usuario de aplicación
+RUN service mysql start && \
+    mysql -e "CREATE DATABASE IF NOT EXISTS huntechdb;" && \
+    mysql -e "CREATE USER 'huntech'@'localhost' IDENTIFIED BY 'tu_contraseña';" && \
+    mysql -e "GRANT ALL PRIVILEGES ON huntechdb.* TO 'huntech'@'localhost';" && \
+    mysql -e "FLUSH PRIVILEGES;"
+
 # Arranca MariaDB y Apache juntos
 CMD mysqld_safe & apache2-foreground
 

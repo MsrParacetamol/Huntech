@@ -1,5 +1,5 @@
 <?php
-$host = "127.0.0.1"; // o "localhost"
+$host = "127.0.0.1";
 $user = "huntech";
 $pass = "1029";
 $dbname = "huntechdb";

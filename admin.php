@@ -71,7 +71,7 @@
             while($row = $result->fetch_assoc()) {
                 echo "<tr>";
                 foreach ($row as $value) {
-                    echo "<td>".htmlspecialchars($value)."</td>";
+                    echo htmlspecialchars($row['campo'] ?? '');
                 }
                 echo "</tr>";
             }
@@ -91,4 +91,5 @@
   </footer>
 </body>
 </html>
+
 

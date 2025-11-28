@@ -1,8 +1,8 @@
 <?php
-$host = "localhost";
-$user = "root";
-$pass = "1029"; // o tu contraseña
-$dbname = "huntechdb";
+$host = getenv("DB_HOST") ?: "huntech-db";
+$user = getenv("DB_USER") ?: "root";
+$pass = getenv("DB_PASSWORD") ?: "tu_contraseña";
+$dbname = getenv("DB_NAME") ?: "huntechdb";
 
 $conn = new mysqli($host, $user, $pass, $dbname);
 

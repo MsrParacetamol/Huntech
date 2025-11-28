@@ -1,7 +1,7 @@
 <?php
-$host = "127.0.0.1";
+$host = "127.0.0.1"; // o "localhost"
 $user = "root";
-$pass = "1029"; // o la que definas
+$pass = ""; // sin contraseña por defecto
 $dbname = "huntechdb";
 
 $conn = new mysqli($host, $user, $pass, $dbname);

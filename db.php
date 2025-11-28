@@ -1,5 +1,5 @@
 <?php
-$host = "localhost";
+$host = "127.0.0.1";
 $user = "root";
 $pass = "1029"; // o la que definas
 $dbname = "huntechdb";
